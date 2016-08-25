@@ -27,6 +27,9 @@ public class QuizResultActivity extends AppCompatActivity implements View.OnClic
 
     private ArrayList<Quiz> quizArrayList = new ArrayList<>();
 
+    int[] selectArray;
+    int[] correctArray;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +77,8 @@ public class QuizResultActivity extends AppCompatActivity implements View.OnClic
 
         Bundle extras = getIntent().getExtras();
         quizArrayList = (ArrayList<Quiz>) getIntent().getSerializableExtra("quizArray");
-        int[] selectArray = extras.getIntArray("selectArray");
-        int[] correctArray = extras.getIntArray("correctArray");
+        selectArray = extras.getIntArray("selectArray");
+        correctArray = extras.getIntArray("correctArray");
 
         Log.i("QuizResultActivity", "(quizArray) " + quizArrayList.toString());
 
@@ -93,10 +96,13 @@ public class QuizResultActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-
         if (v == bt_saveWrongAnswer) {
             Intent intent = new Intent(QuizResultActivity.this, WrongAnswerListActivity.class);
+            intent.putExtra("quizArray", quizArrayList);
+            intent.putExtra("selectArray", selectArray);
+            intent.putExtra("correctArray", correctArray);
             startActivity(intent);
+            finish();
         }
 
         if (v == bt_reQuiz) {
@@ -118,9 +124,6 @@ public class QuizResultActivity extends AppCompatActivity implements View.OnClic
             Intent intent = new Intent(getApplication(), WrongQuestion.class);
 //            intent.putExtra("quizArray", quizArrayList);
             startActivity(intent);
-
         }
-
     }
-
 }

@@ -34,7 +34,8 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
 
     private TextView tv_datetime;
     private ArrayList<Quiz> quizList = new ArrayList<>();
-    private int[] selectAnswer, correctAnswer;
+    private int[] selectAnswer;
+    private int[] correctAnswer;
 
     private WrongAnswerController wrongAnswerController;
 
@@ -65,6 +66,7 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
         quizList = (ArrayList<Quiz>) getIntent().getSerializableExtra("quizArray");
         selectAnswer = extras.getIntArray("selectArray");
         correctAnswer = extras.getIntArray("correctArray");
+
         if (selectAnswer != null) {
             wrongAnswerController.insertQuizInfo(quizList, selectAnswer, correctAnswer);
             Log.i("QuizActivity", "(QuizInfo) " + quizList.toString());
@@ -115,6 +117,7 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
             }
         });
     }
+
     private void showPowerDialog(Bundle args) {
         FragmentManager fm = getFragmentManager();
         XposedDialog powerDialog = new XposedDialog();
@@ -142,5 +145,7 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
                 overridePendingTransition(0, 0);
             }
         }, 500);
+
+
     }
 }

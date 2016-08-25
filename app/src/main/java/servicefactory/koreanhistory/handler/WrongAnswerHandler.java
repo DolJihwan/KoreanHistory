@@ -44,7 +44,7 @@ public class WrongAnswerHandler {
 
     public void insertWrongQuizInfo(String dateTime, String category_major, String category_minor, String category_theme, String category_quiz, int q1, int q2, int q3, int q4, int wrong_yn) {
         String query = "insert into wrong_answer (datetime, category_major, category_minor, category_theme, category_quiz, quiz_no1, quiz_no2, quiz_no3, quiz_no4, wrong_yn) values ('" + dateTime + "', '" + category_major + "', '" + category_minor + "', '" + category_theme + "', '" + category_quiz + "', " + q1 + ", " + q2 + ", " + q3 + ", " + q4 + ", " + wrong_yn + ");";
-        database.execSQL(query);
+        database.rawQuery(query, null);
     }
 
     public Cursor selectWrongQuizInfo() {
@@ -111,11 +111,14 @@ public class WrongAnswerHandler {
     }
 
     public void deleteReview(String mDatetime) {
-        String query = "delete from wrong_answer where datetime = '" + mDatetime + "'";
-        database.rawQuery(query, null);
-//        Cursor cursor = database.rawQuery(query, null);
-//        while(cursor.moveToNext()) {
+        Log.i("WrongHandler", "datetime test:: " + mDatetime);
+        String query = "select _id from wrong_answer where datetime = '" + mDatetime + "';";
+        Cursor cursor = database.rawQuery(query, null);
+        while (cursor.moveToNext()) {
+            Log.i("HelloWorld", "Test:: " + cursor.getString(0));
+            String deleteQuery = "delete from wrong_answer where _id = '" + cursor.getString(0) + "';";
+            database.execSQL(deleteQuery);
 //            Log.i("HelloWorld", "Test:: " + cursor.getString(0)+ ", "+ cursor.getString(1) + ", "+ cursor.getString(2) + ", "+ cursor.getString(3) + ", "+ cursor.getString(4) + ", "+ cursor.getString(5) + ", "+ cursor.getString(6) + ", "+ cursor.getString(7) + ", "+ cursor.getString(8)+ ", "+ cursor.getString(9)+ ", "+ cursor.getString(10));
-//        }
+        }
     }
 }
