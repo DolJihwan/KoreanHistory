@@ -109,4 +109,13 @@ public class WrongAnswerHandler {
 //        }
         return cursor;
     }
+
+    public void deleteReview(String mDatetime) {
+        String query = "delete from wrong_answer where datetime = '" + mDatetime + "'";
+        database.rawQuery(query, null);
+//        Cursor cursor = database.rawQuery(query, null);
+//        while(cursor.moveToNext()) {
+//            Log.i("HelloWorld", "Test:: " + cursor.getString(0)+ ", "+ cursor.getString(1) + ", "+ cursor.getString(2) + ", "+ cursor.getString(3) + ", "+ cursor.getString(4) + ", "+ cursor.getString(5) + ", "+ cursor.getString(6) + ", "+ cursor.getString(7) + ", "+ cursor.getString(8)+ ", "+ cursor.getString(9)+ ", "+ cursor.getString(10));
+//        }
+    }
 }

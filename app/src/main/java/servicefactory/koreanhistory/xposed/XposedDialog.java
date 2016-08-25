@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import servicefactory.koreanhistory.R;
 import servicefactory.koreanhistory.activity.QuizActivity;
 import servicefactory.koreanhistory.contorller.QuizController;
+import servicefactory.koreanhistory.contorller.WrongAnswerController;
 import servicefactory.koreanhistory.popup.TextDrawable;
 
 /**
@@ -25,7 +27,7 @@ import servicefactory.koreanhistory.popup.TextDrawable;
  */
 public class XposedDialog extends DialogFragment {
 
-    private QuizController quizController;
+    private WrongAnswerController wrongAnswerController;
 
     public XposedDialog() {
 
@@ -47,7 +49,7 @@ public class XposedDialog extends DialogFragment {
         bt_deleteQuiz = (LinearLayout) view.findViewById(R.id.soft_reboot);
         bt_cancel = (LinearLayout) view.findViewById(R.id.ll_cancel);
 
-        quizController = new QuizController(getActivity());
+        wrongAnswerController = new WrongAnswerController(getActivity());
 
         bt_entireQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +80,7 @@ public class XposedDialog extends DialogFragment {
         bt_deleteQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DialogSimple();
                 Toast.makeText(getActivity(), "Delete Quiz", Toast.LENGTH_SHORT).show();
             }
         });
@@ -110,10 +113,6 @@ public class XposedDialog extends DialogFragment {
 
     }
 
-    private static void setThreadPrio(int prio) {
-        android.os.Process.setThreadPriority(prio);
-    }
-
     @Override
     public void onStart() {
         super.onStart();
@@ -139,6 +138,32 @@ public class XposedDialog extends DialogFragment {
         super.onActivityCreated(arg0);
         getDialog().getWindow()
                 .getAttributes().windowAnimations = R.style.DialogAnimation;
+    }
+
+    private void DialogSimple() {
+        AlertDialog.Builder alt_bld = new AlertDialog.Builder(getActivity());
+        alt_bld.setMessage("삭제하시겠습니까?").setCancelable(
+                false).setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        wrongAnswerController.deleteReview(mDatetime);
+                        onDismiss(getDialog());
+                        getActivity().finish();
+                        // Action for 'Yes' Button
+                    }
+                }).setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Action for 'NO' Button
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alt_bld.create();
+        // Title for AlertDialog
+        alert.setTitle("Title");
+        // Icon for AlertDialog
+        alert.setIcon(R.drawable.korea);
+        alert.show();
     }
 }
 

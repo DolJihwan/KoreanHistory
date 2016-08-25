@@ -40,7 +40,7 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
 
     private CircularRevealView revealView;
     private int backgroundColor;
-    Handler handler;
+    android.os.Handler handler;
     int maxX, maxY;
 
     @Override

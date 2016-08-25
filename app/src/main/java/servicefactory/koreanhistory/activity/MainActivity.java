@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ArrayList<Quiz> quizArrayList = (ArrayList<Quiz>) getIntent().getSerializableExtra("quizArray");
             intent = new Intent(MainActivity.this, WrongAnswerListActivity.class);
             intent.putExtra("quizArray", quizArrayList);
-            intent.putExtra("selectArray", "");
-            intent.putExtra("correctArray", "");
+            intent.putExtra("selectArray", -1);
+            intent.putExtra("correctArray", -1);
             startActivity(intent);
         }
     }

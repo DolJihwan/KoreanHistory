@@ -118,4 +118,8 @@ public class WrongAnswerController {
         }
         return wordArrayList;
     }
+
+    public void deleteReview(String mDatetime) {
+        wrongAnswerHandler.deleteReview(mDatetime);
+    }
 }
