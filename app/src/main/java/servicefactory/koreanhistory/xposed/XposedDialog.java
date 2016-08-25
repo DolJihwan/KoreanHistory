@@ -148,7 +148,6 @@ public class XposedDialog extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         wrongAnswerController.deleteReview(mDatetime);
                         onDismiss(getDialog());
-
                         // Action for 'Yes' Button
                     }
                 }).setNegativeButton("No",

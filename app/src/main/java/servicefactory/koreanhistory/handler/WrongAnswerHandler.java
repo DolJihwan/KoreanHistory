@@ -44,7 +44,7 @@ public class WrongAnswerHandler {
 
     public void insertWrongQuizInfo(String dateTime, String category_major, String category_minor, String category_theme, String category_quiz, int q1, int q2, int q3, int q4, int wrong_yn) {
         String query = "insert into wrong_answer (datetime, category_major, category_minor, category_theme, category_quiz, quiz_no1, quiz_no2, quiz_no3, quiz_no4, wrong_yn) values ('" + dateTime + "', '" + category_major + "', '" + category_minor + "', '" + category_theme + "', '" + category_quiz + "', " + q1 + ", " + q2 + ", " + q3 + ", " + q4 + ", " + wrong_yn + ");";
-        database.rawQuery(query, null);
+        database.execSQL(query);
     }
 
     public Cursor selectWrongQuizInfo() {

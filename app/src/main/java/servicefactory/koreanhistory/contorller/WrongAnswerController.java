@@ -49,6 +49,7 @@ public class WrongAnswerController {
             wrongAnswerHandler.insertWrongQuizInfo(dateTime, quizList.get(i).getCategory_major(), quizList.get(i).getCategory_minor(), quizList.get(i).getCategory_theme(), quizList.get(i).getCategory_quiz(), quizList.get(i).getQuizNo1(), quizList.get(i).getQuizNo2(), quizList.get(i).getQuizNo3(), quizList.get(i).getQuizNo4(), tmpNum);
             Log.i("WrongAnswerController", "(wrong_yn) " + dateTime + ", " + quizList.get(i).getCategory_major() + ", " + quizList.get(i).getCategory_minor() + ", " + quizList.get(i).getCategory_theme() + ", " + quizList.get(i).getCategory_quiz() + ", " + quizList.get(i).getQuizNo1() + ", " + quizList.get(i).getQuizNo2() + ", " + quizList.get(i).getQuizNo3() + ", " + quizList.get(i).getQuizNo4() + ", " + tmpNum);
         }
+        wrongAnswerHandler.close();
     }
 
     public ArrayList<WrongAnswerList_Category> selectWrongQuizInfo() {
@@ -70,6 +71,7 @@ public class WrongAnswerController {
                 wrongAnswerList_category.add(wrongQuiz);
             }
         }
+        wrongAnswerHandler.close();
         return wrongAnswerList_category;
     }
 
@@ -93,6 +95,7 @@ public class WrongAnswerController {
             wordArrayList.add(word);
             Log.i("WrongAnswerController", "(createReviewTotal) " + cursor.getString(0) + ", " + cursor.getString(1) + ", " + cursor.getString(2) + ", " + cursor.getString(3) + ", " + cursor.getString(4) + ", " + cursor.getString(5) + ", " + cursor.getString(6) + ", " + cursor.getString(7) + ", " + cursor.getString(8) + ", " + cursor.getString(9) + ", " + cursor.getString(10));
         }
+        wrongAnswerHandler.close();
         return wordArrayList;
     }
 
@@ -116,10 +119,12 @@ public class WrongAnswerController {
             wordArrayList.add(word);
             Log.i("WrongAnswerController", "(createReviewTotal) " + cursor.getString(0) + ", " + cursor.getString(1) + ", " + cursor.getString(2) + ", " + cursor.getString(3) + ", " + cursor.getString(4) + ", " + cursor.getString(5) + ", " + cursor.getString(6) + ", " + cursor.getString(7) + ", " + cursor.getString(8) + ", " + cursor.getString(9) + ", " + cursor.getString(10));
         }
+        wrongAnswerHandler.close();
         return wordArrayList;
     }
 
     public void deleteReview(String mDatetime) {
         wrongAnswerHandler.deleteReview(mDatetime);
+        wrongAnswerHandler.close();
     }
 }

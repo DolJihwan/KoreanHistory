@@ -3,6 +3,7 @@ package servicefactory.koreanhistory.activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
@@ -69,9 +70,9 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
 
         if (selectAnswer != null) {
             wrongAnswerController.insertQuizInfo(quizList, selectAnswer, correctAnswer);
-            Log.i("QuizActivity", "(QuizInfo) " + quizList.toString());
-            Log.i("QuizActivity", "(selAnswer) " + selectAnswer[0] + ", " + selectAnswer[1] + ", " + selectAnswer[2] + ", " + selectAnswer[3] + ", " + selectAnswer[4]);
-            Log.i("QuizActivity", "(corAnswer) " + correctAnswer[0] + ", " + correctAnswer[1] + ", " + correctAnswer[2] + ", " + correctAnswer[3] + ", " + correctAnswer[4]);
+            Log.i("WrongAnswerActivity", "(QuizInfo) " + quizList.toString());
+            Log.i("WrongAnswerActivity", "(selAnswer) " + selectAnswer[0] + ", " + selectAnswer[1] + ", " + selectAnswer[2] + ", " + selectAnswer[3] + ", " + selectAnswer[4]);
+            Log.i("WrongAnswerActivity", "(corAnswer) " + correctAnswer[0] + ", " + correctAnswer[1] + ", " + correctAnswer[2] + ", " + correctAnswer[3] + ", " + correctAnswer[4]);
         }
 
         // Adapter 생성
@@ -145,7 +146,6 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
                 overridePendingTransition(0, 0);
             }
         }, 500);
-
 
     }
 }
