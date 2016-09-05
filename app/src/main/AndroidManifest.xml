@@ -19,6 +19,7 @@
         <activity android:name=".activity.PeriodChoiceActivity" />
         <activity android:name=".activity.QuizActivity" />
         <activity android:name=".activity.QuizListActivity" />
+        <activity android:name=".activity.WrongAnswerListActivit" />
         <activity android:name=".activity.WrongAnswerListActivity" />
         <activity android:name=".activity.QuizResultActivity" />
     </application>

@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/actionbar_tab_1"
+    android:id="@+id/main_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.MainActivity">
+    android:weightSum="1"
+    tools:context=".activity.MainActivity"
+    android:background="#000000">
 
     <include
         layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#000000"
+        android:layout_weight="1.2"
+        android:padding="50dp"
+        android:weightSum="1">
 
         <com.andexert.library.RippleView
             android:id="@+id/rv_study"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_weight="0.25"
             rv_centered="true">
 
             <ImageView
-                android:layout_width="210dp"
-                android:layout_height="80dp"
+                android:id="@+id/iv_study"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/main_study_off"
                 android:layout_centerInParent="true"/>
 
@@ -39,12 +45,13 @@
             android:id="@+id/rv_quiz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_weight="0.25"
             rv_centered="true">
 
             <ImageView
-                android:layout_width="210dp"
-                android:layout_height="80dp"
+                android:id="@+id/iv_quiz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/main_quiz_off"
                 android:layout_centerInParent="true"/>
 
@@ -54,12 +61,13 @@
             android:id="@+id/rv_review"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_weight="0.25"
             rv_centered="true">
 
             <ImageView
-                android:layout_width="210dp"
-                android:layout_height="80dp"
+                android:id="@+id/iv_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/main_review_off"
                 android:layout_centerInParent="true"/>
 
@@ -69,21 +77,25 @@
             android:id="@+id/rv_preview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_weight="0.25"
             rv_centered="true">
 
             <ImageView
-                android:layout_width="210dp"
-                android:layout_height="80dp"
+                android:id="@+id/iv_preview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/main_preview_off"
                 android:layout_centerInParent="true"/>
 
         </com.andexert.library.RippleView>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="광고영역"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="광고영역"/></LinearLayout>
 </LinearLayout>

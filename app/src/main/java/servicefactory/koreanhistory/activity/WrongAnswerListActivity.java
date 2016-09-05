@@ -3,7 +3,6 @@ package servicefactory.koreanhistory.activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +22,7 @@ import servicefactory.koreanhistory.contorller.WrongAnswerController;
 import servicefactory.koreanhistory.date.DateInfo;
 import servicefactory.koreanhistory.model.Quiz;
 import servicefactory.koreanhistory.model.WrongAnswerList;
-import servicefactory.koreanhistory.model.WrongAnswerList_Category;
+import servicefactory.koreanhistory.model.WrongAnswerItem;
 import servicefactory.koreanhistory.popup.CircularRevealView;
 import servicefactory.koreanhistory.xposed.XposedDialog;
 
@@ -31,7 +30,6 @@ import servicefactory.koreanhistory.xposed.XposedDialog;
  * Created by JihwanHome on 2016-08-18.
  */
 public class WrongAnswerListActivity extends AppCompatActivity implements DialogInterface.OnDismissListener {
-    private static DateInfo dateInfoInstance;
 
     private TextView tv_datetime;
     private ArrayList<Quiz> quizList = new ArrayList<>();
@@ -84,12 +82,8 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
 
         tv_datetime = (TextView) findViewById(R.id.tv_wa_datetime);
 
-        if (dateInfoInstance == null) {
-            dateInfoInstance = DateInfo.getDateInfoInstance();
-        }
-
         WrongAnswerController wrongAnswerController = new WrongAnswerController(getApplicationContext());
-        ArrayList<WrongAnswerList_Category> wrongQuizListArr = wrongAnswerController.selectWrongQuizInfo();
+        ArrayList<WrongAnswerItem> wrongQuizListArr = wrongAnswerController.selectWrongQuizInfo();
 
         for (int i = 0; i < wrongQuizListArr.size(); i++) {
             adapter.addItem(wrongQuizListArr.get(i).getDatetime(), wrongQuizListArr.get(i).getCategoryList(), wrongQuizListArr.get(i).getTotalQuizCount(), wrongQuizListArr.get(i).getWrongQuizCount());
@@ -146,6 +140,5 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
                 overridePendingTransition(0, 0);
             }
         }, 500);
-
     }
 }

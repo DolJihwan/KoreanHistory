@@ -10,7 +10,7 @@ import servicefactory.koreanhistory.date.DateInfo;
 import servicefactory.koreanhistory.handler.WrongAnswerHandler;
 import servicefactory.koreanhistory.model.Quiz;
 import servicefactory.koreanhistory.model.Word;
-import servicefactory.koreanhistory.model.WrongAnswerList_Category;
+import servicefactory.koreanhistory.model.WrongAnswerItem;
 
 /**
  * Created by JihwanHome on 2016-08-20.
@@ -52,8 +52,8 @@ public class WrongAnswerController {
         wrongAnswerHandler.close();
     }
 
-    public ArrayList<WrongAnswerList_Category> selectWrongQuizInfo() {
-        ArrayList<WrongAnswerList_Category> wrongAnswerList_category = new ArrayList();
+    public ArrayList<WrongAnswerItem> selectWrongQuizInfo() {
+        ArrayList<WrongAnswerItem> wrongAnswerItem = new ArrayList();
 
         Cursor dateList = wrongAnswerHandler.selectDateList();
         while (dateList.moveToNext()) {
@@ -63,16 +63,16 @@ public class WrongAnswerController {
             String wrongQuizCnt = wrongAnswerHandler.wrongQuizCount(dateList.getString(1));
             if (categoryCnt.equals("1")) {
                 categoryString = "[" + dateList.getString(2) + "]";
-                WrongAnswerList_Category wrongQuiz = new WrongAnswerList_Category(dateList.getString(1), categoryString, "총 문제수: " + totalQuizCnt, "오답수: " + wrongQuizCnt);
-                wrongAnswerList_category.add(wrongQuiz);
+                WrongAnswerItem wrongQuiz = new WrongAnswerItem(dateList.getString(1), categoryString, "총 문제수: " + totalQuizCnt, wrongQuizCnt);
+                wrongAnswerItem.add(wrongQuiz);
             } else {
                 categoryString = "[" + dateList.getString(2) + " 외 " + +(Integer.parseInt(categoryCnt) - 1) + "개]";
-                WrongAnswerList_Category wrongQuiz = new WrongAnswerList_Category(dateList.getString(1), categoryString, "총 문제수: " + totalQuizCnt, "오답수: " + wrongQuizCnt);
-                wrongAnswerList_category.add(wrongQuiz);
+                WrongAnswerItem wrongQuiz = new WrongAnswerItem(dateList.getString(1), categoryString, "총 문제수: " + totalQuizCnt, wrongQuizCnt);
+                wrongAnswerItem.add(wrongQuiz);
             }
         }
         wrongAnswerHandler.close();
-        return wrongAnswerList_category;
+        return wrongAnswerItem;
     }
 
     public ArrayList<Word> createReviewTotal(String mDatetime) {
