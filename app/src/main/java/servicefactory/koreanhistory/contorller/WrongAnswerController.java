@@ -7,7 +7,9 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import servicefactory.koreanhistory.date.DateInfo;
+import servicefactory.koreanhistory.handler.CategoryHandler;
 import servicefactory.koreanhistory.handler.WrongAnswerHandler;
+import servicefactory.koreanhistory.model.Category;
 import servicefactory.koreanhistory.model.Quiz;
 import servicefactory.koreanhistory.model.Word;
 import servicefactory.koreanhistory.model.WrongAnswerItem;
@@ -17,6 +19,7 @@ import servicefactory.koreanhistory.model.WrongAnswerItem;
  */
 public class WrongAnswerController {
     private WrongAnswerHandler wrongAnswerHandler;
+    private CategoryHandler categoryHandler;
     private DateInfo dateInfoInstance;
 
     private ArrayList<Quiz> quizArr = new ArrayList<>();
@@ -71,6 +74,36 @@ public class WrongAnswerController {
                 wrongAnswerItem.add(wrongQuiz);
             }
         }
+        wrongAnswerHandler.close();
+        return wrongAnswerItem;
+    }
+
+    public ArrayList<WrongAnswerItem> selectWrongCategoryInfo() {
+        ArrayList<Category> wrongAnswerCategoryItem = new ArrayList<>();
+        ArrayList<WrongAnswerItem> wrongAnswerItem = new ArrayList();
+        Cursor categoryList = wrongAnswerHandler.selectCategoryList();
+
+        while(categoryList.moveToNext()){
+            Log.i("WrongAnswerController", "major:: " + categoryList.getString(0));
+        }
+
+//        Cursor dateList = wrongAnswerHandler.selectDateList();
+//        while (dateList.moveToNext()) {
+//            String categoryString = "";
+//            String categoryCnt = wrongAnswerHandler.selectCategoryCount(dateList.getString(1));
+//            String totalQuizCnt = wrongAnswerHandler.totalQuizCount(dateList.getString(1));
+//            String wrongQuizCnt = wrongAnswerHandler.wrongQuizCount(dateList.getString(1));
+//            if (categoryCnt.equals("1")) {
+//                categoryString = "[" + dateList.getString(2) + "]";
+//                WrongAnswerItem wrongQuiz = new WrongAnswerItem(dateList.getString(1), categoryString, "총 문제수: " + totalQuizCnt, wrongQuizCnt);
+//                wrongAnswerItem.add(wrongQuiz);
+//            } else {
+//                categoryString = "[" + dateList.getString(2) + " 외 " + +(Integer.parseInt(categoryCnt) - 1) + "개]";
+//                WrongAnswerItem wrongQuiz = new WrongAnswerItem(dateList.getString(1), categoryString, "총 문제수: " + totalQuizCnt, wrongQuizCnt);
+//                wrongAnswerItem.add(wrongQuiz);
+//            }
+//        }
+
         wrongAnswerHandler.close();
         return wrongAnswerItem;
     }

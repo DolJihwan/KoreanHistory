@@ -31,7 +31,7 @@ public class CategoryController {
         ArrayList<Category> totalCategory = new ArrayList<>();
         Category category = null;
 
-        Cursor cursor = categoryHandler.getTotalCategory();
+        Cursor cursor = categoryHandler.getTotalCategoryList();
 
         while(cursor.moveToNext()){
             String category_major = cursor.getString(0);

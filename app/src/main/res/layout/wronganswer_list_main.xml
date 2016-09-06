@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.WrongAnswerListActivit">
+
+    <RelativeLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <it.neokree.materialtabs.MaterialTabHost
+            android:id="@+id/materialTabHost"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp"
+            android:visibility="visible"
+            app:accentColor="@color/buttonyellow"
+            app:primaryColor="@color/white"
+            app:textColor="@color/button_material_dark"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/materialTabHost"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

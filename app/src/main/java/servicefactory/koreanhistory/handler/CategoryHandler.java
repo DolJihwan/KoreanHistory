@@ -41,8 +41,8 @@ public class CategoryHandler {
         }
     }
 
-    public Cursor getTotalCategory(){
-        String query = "select category_major, category_minor from quiz group by category_minor order by _id";
+    public Cursor getTotalCategoryMajor(){
+        String query = "select category_major from quiz group by category_major order by _id";
 
         return database.rawQuery(query, null);
     }
