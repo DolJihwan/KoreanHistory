@@ -1,6 +1,7 @@
 package servicefactory.koreanhistory.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import servicefactory.koreanhistory.R;
+import servicefactory.koreanhistory.activity.WrongAnswerListActivit;
 import servicefactory.koreanhistory.model.WrongAnswerItem;
 
 /**
@@ -19,7 +21,7 @@ import servicefactory.koreanhistory.model.WrongAnswerItem;
 public class WrongAnswerListAdapter extends RecyclerView.Adapter<WrongAnswerItemHolder> {
 
     ArrayList<WrongAnswerItem> contents;
-
+    WrongAnswerListActivit test = new WrongAnswerListActivit();
     Context ctx;
 
 
@@ -38,23 +40,12 @@ public class WrongAnswerListAdapter extends RecyclerView.Adapter<WrongAnswerItem
             public void onView(View caller) {
                 Log.e("getting data", "view" + contents.get((int) caller.getTag()).getDatetime());
 
-               /* HomePage.songtitle.setText(contents.get((int)caller.getTag()).getFilename());
-                HomePage.songplaypause.setImageDrawable(null);
-                HomePage.songplaypause.setImageResource(android.R.drawable.ic_media_pause);
-                try
-                {
-                    HomePage.mp.reset();
-                    HomePage.mp.setDataSource(ctx, Uri.parse("file://"+contents.get((int) caller.getTag()).getUri()));
-                    HomePage.mp.prepare();
-                    HomePage.mp.start();
-                    HomePage. mp.setOnPreparedListener((MediaPlayer.OnPreparedListener) ctx);
-                    HomePage.mp.prepareAsync();
+                String waDatetime = contents.get((int) caller.getTag()).getDatetime();
 
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }*/
+                Bundle args = new Bundle();
+                args.putString("datetime", waDatetime);
+
+                Log.i("HelloTest" , " datetime:: " + waDatetime);
 
                 Toast.makeText(ctx, contents.get((int) caller.getTag()).getDatetime(), Toast.LENGTH_LONG).show();
 

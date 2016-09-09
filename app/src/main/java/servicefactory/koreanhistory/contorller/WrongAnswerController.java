@@ -79,7 +79,6 @@ public class WrongAnswerController {
     }
 
     public ArrayList<WrongAnswerItem> selectWrongCategoryInfo() {
-        ArrayList<Category> wrongAnswerCategoryItem = new ArrayList<>();
         ArrayList<WrongAnswerItem> wrongAnswerItem = new ArrayList();
         Cursor categoryList = wrongAnswerHandler.selectCategoryList();
 

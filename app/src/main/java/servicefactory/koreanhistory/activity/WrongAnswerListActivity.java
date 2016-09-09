@@ -40,8 +40,8 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
 
     private CircularRevealView revealView;
     private int backgroundColor;
-    android.os.Handler handler;
     int maxX, maxY;
+    android.os.Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +54,6 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
         ListView listview;
         WrongAnswerListViewAdapter adapter;
         wrongAnswerController = new WrongAnswerController(getApplicationContext());
-
-        Display mdisp = getWindowManager().getDefaultDisplay();
-        Point mdispSize = new Point();
-        mdisp.getSize(mdispSize);
-        maxX = mdispSize.x;
-        maxY = mdispSize.y;
 
         Bundle extras = getIntent().getExtras();
         quizList = (ArrayList<Quiz>) getIntent().getSerializableExtra("quizArray");
@@ -104,7 +98,7 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
                 Bundle args = new Bundle();
                 args.putString("datetime", waDatetime);
 
-                showPowerDialog(args);
+//                showPowerDialog(args);
 
                 Log.i("WrongAnswerActivity", "(onClick) " + waDatetime + ", " + waCategory + ", " + waTotalCount + ", " + waWrongCount);
 
@@ -123,6 +117,11 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
 
     @Override
     public void onDismiss(final DialogInterface dialog) {
+//        Display mdisp = getWindowManager().getDefaultDisplay();
+//        Point mdispSize = new Point();
+////        mdisp.getSize(mdispSize);
+//        maxX = mdispSize.x;
+//        maxY = mdispSize.y;
 
         final Point p = new Point(maxX / 2, maxY / 2);
 

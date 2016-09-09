@@ -1,10 +1,12 @@
 package servicefactory.koreanhistory.fragment;
 
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import servicefactory.koreanhistory.adapter.RecyclerViewMaterialAdapter;
 import servicefactory.koreanhistory.adapter.WrongAnswerListAdapter;
 import servicefactory.koreanhistory.contorller.WrongAnswerController;
 import servicefactory.koreanhistory.model.WrongAnswerItem;
+import servicefactory.koreanhistory.popup.CircularRevealView;
 
 
 public class DateListFragment extends Fragment {
@@ -23,6 +26,10 @@ public class DateListFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     ArrayList<WrongAnswerItem> cards = new ArrayList<>();
+
+    private CircularRevealView revealView;
+    private int backgroundColor;
+    int maxX, maxY;
 
     public DateListFragment() {
         // Required empty public constructor

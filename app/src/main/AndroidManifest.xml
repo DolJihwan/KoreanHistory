@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.PeriodChoiceActivity" />
+        <activity android:name=".activity.StudyMajorCategoryListActivity" />
+        <activity android:name=".activity.StudyMinorCategoryListActivity" />
         <activity android:name=".activity.QuizActivity" />
         <activity android:name=".activity.QuizListActivity" />
         <activity android:name=".activity.WrongAnswerListActivit" />

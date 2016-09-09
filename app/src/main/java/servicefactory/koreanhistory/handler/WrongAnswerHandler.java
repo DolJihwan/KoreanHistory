@@ -80,7 +80,11 @@ public class WrongAnswerHandler {
 
     public Cursor selectCategoryList() {
         String query = "select * from wrong_answer group by category_major";
-        return database.rawQuery(query, null);
+        Cursor cursor = database.rawQuery(query, null);
+        while(cursor.moveToNext()){
+            Log.i("CursorTest", "major:: " + cursor.getString(0) + ", " + cursor.getString(1) + ", " + cursor.getString(2)+ ", " + cursor.getString(3));
+        }
+        return cursor;
     }
     public String totalQuizCount(String dateTime) {
         String query = "select count(*) from wrong_answer where datetime = '" + dateTime + "'";

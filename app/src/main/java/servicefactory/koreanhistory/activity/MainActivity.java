@@ -6,14 +6,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andexert.library.RippleView;
@@ -31,24 +27,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView iv_study, iv_quiz, iv_review, iv_preview;
     private Intent intent;
     android.os.Handler handler;
-    private boolean isViewPressed = true;
-
-    private View.OnTouchListener mTouchListener = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Find the toolbar view and set as ActionBar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        // Display icon in the toolbar
-        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
-        // Get access to the custom title view
-        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        mTitle.setText("한 국 사");
 
         handler = new Handler();
         MainActivityInit();
@@ -144,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    intent = new Intent(MainActivity.this, PeriodChoiceActivity.class);
+                    intent = new Intent(MainActivity.this, StudyMajorCategoryListActivity.class);
                     startActivity(intent);
                 }
             }, 500);
@@ -189,7 +172,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    ArrayList<Quiz> quizArrayList = (ArrayList<Quiz>) getIntent().getSerializableExtra("quizArray");
                     intent = new Intent(MainActivity.this, WrongAnswerListActivit.class);
+                    intent.putExtra("quizArray", quizArrayList);
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(), "업데이트 예정입니다.", Toast.LENGTH_SHORT).show();
                 }
@@ -202,7 +187,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }, 500);
         }
     }
-
 
     private static void setThreadPrio(int prio) {
         android.os.Process.setThreadPriority(prio);

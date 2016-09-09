@@ -12,6 +12,11 @@ public class WrongAnswerItem {
     public WrongAnswerItem() {
     }
 
+    public WrongAnswerItem(String categoryList, String wrongQuizCount) {
+        this.categoryList = categoryList;
+        this.wrongQuizCount = wrongQuizCount;
+    }
+
     public WrongAnswerItem(String datetime, String categoryList, String totalQuizCount, String wrongQuizCount) {
         this.datetime = datetime;
         this.categoryList = categoryList;

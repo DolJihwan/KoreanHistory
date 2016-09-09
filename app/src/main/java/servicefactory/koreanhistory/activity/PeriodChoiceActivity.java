@@ -99,7 +99,7 @@ public class PeriodChoiceActivity extends AppCompatActivity implements View.OnCl
         layout_period[6] = (LinearLayout) findViewById(R.id.layout_period6);
         layout_period[7] = (LinearLayout) findViewById(R.id.layout_period7);
 
-        for(int i = 0; i<bt_category.length; i++){
+        for (int i = 0; i < bt_category.length; i++) {
 //            bt_category[i].setOnClickListener(this);
             tv_category[i].setText(majorCategory.get(i));
             layout_period[i].setOnClickListener(this);
@@ -108,8 +108,8 @@ public class PeriodChoiceActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        for(int i = 0; i<layout_period.length; i++){
-            if(v == layout_period[i]){
+        for (int i = 0; i < layout_period.length; i++) {
+            if (v == layout_period[i]) {
                 Toast.makeText(this, "Hello Layout: " + v.getId(), Toast.LENGTH_SHORT).show();
             }
         }
