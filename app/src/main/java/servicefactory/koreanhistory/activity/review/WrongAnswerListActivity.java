@@ -1,4 +1,4 @@
-package servicefactory.koreanhistory.activity;
+package servicefactory.koreanhistory.activity.review;
 
 import android.app.DialogFragment;
 import android.app.FragmentManager;
@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -17,9 +16,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import servicefactory.koreanhistory.R;
-import servicefactory.koreanhistory.adapter.WrongAnswerListViewAdapter;
-import servicefactory.koreanhistory.contorller.WrongAnswerController;
-import servicefactory.koreanhistory.date.DateInfo;
+import servicefactory.koreanhistory.adapter.review.WrongAnswerListViewAdapter;
+import servicefactory.koreanhistory.contorller.ReviewController;
 import servicefactory.koreanhistory.model.Quiz;
 import servicefactory.koreanhistory.model.WrongAnswerList;
 import servicefactory.koreanhistory.model.WrongAnswerItem;
@@ -36,7 +34,7 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
     private int[] selectAnswer;
     private int[] correctAnswer;
 
-    private WrongAnswerController wrongAnswerController;
+    private ReviewController wrongAnswerController;
 
     private CircularRevealView revealView;
     private int backgroundColor;
@@ -53,7 +51,7 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
 
         ListView listview;
         WrongAnswerListViewAdapter adapter;
-        wrongAnswerController = new WrongAnswerController(getApplicationContext());
+        wrongAnswerController = new ReviewController(getApplicationContext());
 
         Bundle extras = getIntent().getExtras();
         quizList = (ArrayList<Quiz>) getIntent().getSerializableExtra("quizArray");
@@ -76,7 +74,7 @@ public class WrongAnswerListActivity extends AppCompatActivity implements Dialog
 
         tv_datetime = (TextView) findViewById(R.id.tv_wa_datetime);
 
-        WrongAnswerController wrongAnswerController = new WrongAnswerController(getApplicationContext());
+        ReviewController wrongAnswerController = new ReviewController(getApplicationContext());
         ArrayList<WrongAnswerItem> wrongQuizListArr = wrongAnswerController.selectWrongQuizInfo();
 
         for (int i = 0; i < wrongQuizListArr.size(); i++) {

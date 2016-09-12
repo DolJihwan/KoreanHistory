@@ -1,4 +1,4 @@
-package servicefactory.koreanhistory.activity;
+package servicefactory.koreanhistory.activity.study;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,21 +39,22 @@ public class StudyMinorCategoryListActivity extends AppCompatActivity implements
     private NavigationView navigationView;
     private ImageView hambergerButton;
     private DrawerLayout drawer;
-    private SubMenu tmpSubMenu=null;
+    private SubMenu tmpSubMenu = null;
     private ArrayList<ArrayList<Category>> totalCategoryList;
     private MenuItem tmpMenuItem = null;
     private Category tmpCategory;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
         toolbarSetting();
         intent = getIntent();
-        try{
-            ChoiceMinorCategoryActivityInit(intent.getStringExtra("majorCategory"),intent.getIntExtra("position", 0));
-        }catch (NullPointerException e){
+        try {
+            ChoiceMinorCategoryActivityInit(intent.getStringExtra("majorCategory"), intent.getIntExtra("position", 0));
+        } catch (NullPointerException e) {
             Log.i("choiceMinor", intent.getStringExtra("majorCategory"));
             ChoiceMinorCategoryActivityInit(intent.getStringExtra("majorCategory"));
-          }
+        }
 
     }
 
@@ -78,21 +79,21 @@ public class StudyMinorCategoryListActivity extends AppCompatActivity implements
 
     }
 
-    public void makeDrawerList(){
+    public void makeDrawerList() {
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-        Log.i("makeDrawerList","test");
-      totalCategoryList = studycontroller.getTotalCategoryList();
-        for(int i=0; i<totalCategoryList.size(); i++){
+        Log.i("makeDrawerList", "test");
+        totalCategoryList = studycontroller.getTotalCategoryList();
+        for (int i = 0; i < totalCategoryList.size(); i++) {
             tmpSubMenu = navigationView.getMenu().addSubMenu(totalCategoryList.get(i).get(0).getCategoryMajor());
-            Log.i("submenutest",totalCategoryList.get(i).get(0).getCategoryMajor());
-            for(int j=0; j<totalCategoryList.get(i).size(); j++){
+            Log.i("submenutest", totalCategoryList.get(i).get(0).getCategoryMajor());
+            for (int j = 0; j < totalCategoryList.get(i).size(); j++) {
                 tmpMenuItem = tmpSubMenu.add(totalCategoryList.get(i).get(j).getCategoryMinor());
                 tmpMenuItem.setIcon(R.drawable.ic_menu_camera);
                 tmpMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(getApplicationContext(),item.getTitle(), Toast.LENGTH_SHORT);
-                        Log.i("string test", item.getTitle()+"");
+                        Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT);
+                        Log.i("string test", item.getTitle() + "");
                         choiceMinorCategoryWithDrawer(item.getTitle().toString());
                         vpPager.invalidate();
 
@@ -104,18 +105,19 @@ public class StudyMinorCategoryListActivity extends AppCompatActivity implements
         navigationView.setNavigationItemSelectedListener(this);
 
     }
-    private void choiceMinorCategoryWithDrawer(String minorCategory){
+
+    private void choiceMinorCategoryWithDrawer(String minorCategory) {
 
         Log.i("start test", "start!!");
         tmpCategory = studycontroller.getSelectedMajorCategory(minorCategory);
 
-        Log.i("Major1 : ", getMinorCategoryLength(tmpCategory.getCategoryMajor())+"");
+        Log.i("Major1 : ", getMinorCategoryLength(tmpCategory.getCategoryMajor()) + "");
         Log.i("Minor1 : ", studycontroller.getMinorCategory(tmpCategory.getCategoryMajor()).toString());
         Intent refresh = new Intent(this, StudyMinorCategoryListActivity.class);
         finish();
-        refresh.putExtra("majorCategory",tmpCategory.getCategoryMajor());
-        for(int i=0; i<studycontroller.getMinorCategory(tmpCategory.getCategoryMajor()).size(); i++){
-            if(minorCategory.equals(studycontroller.getMinorCategory(tmpCategory.getCategoryMajor()).get(i).getCategoryMinor())) {
+        refresh.putExtra("majorCategory", tmpCategory.getCategoryMajor());
+        for (int i = 0; i < studycontroller.getMinorCategory(tmpCategory.getCategoryMajor()).size(); i++) {
+            if (minorCategory.equals(studycontroller.getMinorCategory(tmpCategory.getCategoryMajor()).get(i).getCategoryMinor())) {
                 refresh.putExtra("position", i);
             }
         }
@@ -123,8 +125,9 @@ public class StudyMinorCategoryListActivity extends AppCompatActivity implements
 
 
     }
+
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.i("click test", item.getItemId()+","+android.R.id.home);
+        Log.i("click test", item.getItemId() + "," + android.R.id.home);
         switch (item.getItemId()) {
             case android.R.id.home:
                 // app icon in action bar clicked; goto parent activity.
@@ -134,10 +137,11 @@ public class StudyMinorCategoryListActivity extends AppCompatActivity implements
                 return super.onOptionsItemSelected(item);
         }
     }
+
     private void ChoiceMinorCategoryActivityInit(String majorCategory) {
         studycontroller = new StudyController(getApplicationContext());
         vpPager = (ViewPager) findViewById(R.id.vpPager);
-        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager(), getMinorCategoryLength(majorCategory), studycontroller.getMinorCategory(majorCategory),getApplicationContext());
+        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager(), getMinorCategoryLength(majorCategory), studycontroller.getMinorCategory(majorCategory), getApplicationContext());
         vpPager.setAdapter(adapterViewPager);
         /*vpPager.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -149,22 +153,23 @@ public class StudyMinorCategoryListActivity extends AppCompatActivity implements
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         //오른쪽 햄버거 버튼 초기화
-        hambergerButton = (ImageView)findViewById(R.id.hambergerbutton);
+        hambergerButton = (ImageView) findViewById(R.id.hambergerbutton);
         hambergerButton.setOnClickListener(this);
 
         makeDrawerList();
     }
+
     private void ChoiceMinorCategoryActivityInit(String majorCategory, int i) {
         studycontroller = new StudyController(getApplicationContext());
         vpPager = (ViewPager) findViewById(R.id.vpPager);
-        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager(), getMinorCategoryLength(majorCategory), studycontroller.getMinorCategory(majorCategory),getApplicationContext());
+        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager(), getMinorCategoryLength(majorCategory), studycontroller.getMinorCategory(majorCategory), getApplicationContext());
         vpPager.setAdapter(adapterViewPager);
         vpPager.setCurrentItem(i);
         //Get access drawer View
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         //오른쪽 햄버거 버튼 초기화
-        hambergerButton = (ImageView)findViewById(R.id.hambergerbutton);
+        hambergerButton = (ImageView) findViewById(R.id.hambergerbutton);
         hambergerButton.setOnClickListener(this);
 
         makeDrawerList();
@@ -197,7 +202,7 @@ public class StudyMinorCategoryListActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.hambergerbutton){
+        if (v.getId() == R.id.hambergerbutton) {
             drawer.openDrawer(GravityCompat.END);
         }
     }

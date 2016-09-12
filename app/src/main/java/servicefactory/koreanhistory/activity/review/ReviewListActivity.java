@@ -1,4 +1,4 @@
-package servicefactory.koreanhistory.activity;
+package servicefactory.koreanhistory.activity.review;
 
 import android.app.DialogFragment;
 import android.app.FragmentManager;
@@ -6,32 +6,26 @@ import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Display;
-import android.view.Menu;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import eu.chainfire.libsuperuser.Shell;
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
 import servicefactory.koreanhistory.R;
-import servicefactory.koreanhistory.adapter.WrongAnswerPagerAdapter;
-import servicefactory.koreanhistory.contorller.WrongAnswerController;
+import servicefactory.koreanhistory.adapter.review.WrongAnswerPagerAdapter;
+import servicefactory.koreanhistory.contorller.ReviewController;
 import servicefactory.koreanhistory.date.DateInfo;
 import servicefactory.koreanhistory.model.Quiz;
-import servicefactory.koreanhistory.persistence.KoreanHistoryFinalVariable;
 import servicefactory.koreanhistory.popup.CircularRevealView;
 import servicefactory.koreanhistory.xposed.XposedDialog;
 
 
-public class WrongAnswerListActivit extends AppCompatActivity implements MaterialTabListener ,DialogInterface.OnDismissListener {
+public class ReviewListActivity extends AppCompatActivity implements MaterialTabListener ,DialogInterface.OnDismissListener {
 
     private static DateInfo dateInfoInstance;
     private MaterialTabHost tabHost;
@@ -46,7 +40,7 @@ public class WrongAnswerListActivit extends AppCompatActivity implements Materia
     private int[] selectAnswer;
     private int[] correctAnswer;
 
-    private WrongAnswerController wrongAnswerController;
+    private ReviewController wrongAnswerController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +49,7 @@ public class WrongAnswerListActivit extends AppCompatActivity implements Materia
 
 
         revealView = (CircularRevealView) findViewById(R.id.reveal);
-        wrongAnswerController = new WrongAnswerController(getApplicationContext());
+        wrongAnswerController = new ReviewController(getApplicationContext());
 
         Bundle extras = getIntent().getExtras();
         quizList = (ArrayList<Quiz>) getIntent().getSerializableExtra("quizArray");
@@ -77,7 +71,7 @@ public class WrongAnswerListActivit extends AppCompatActivity implements Materia
         tabHost = (MaterialTabHost) findViewById(R.id.materialTabHost);
         pager = (ViewPager) findViewById(R.id.viewpager);
 
-        WrongAnswerPagerAdapter pagerAdapter = new WrongAnswerPagerAdapter(getSupportFragmentManager(), WrongAnswerListActivit.this);
+        WrongAnswerPagerAdapter pagerAdapter = new WrongAnswerPagerAdapter(getSupportFragmentManager(), ReviewListActivity.this);
         pager.setAdapter(pagerAdapter);
         pager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -93,7 +87,7 @@ public class WrongAnswerListActivit extends AppCompatActivity implements Materia
             tabHost.addTab(
                     tabHost.newTab()
                             .setText(tabTitle[i])
-                            .setTabListener(WrongAnswerListActivit.this)
+                            .setTabListener(ReviewListActivity.this)
             );
         }
     }

@@ -1,4 +1,4 @@
-package servicefactory.koreanhistory.activity;
+package servicefactory.koreanhistory.activity.quiz;
 
 import android.content.Context;
 import android.content.Intent;

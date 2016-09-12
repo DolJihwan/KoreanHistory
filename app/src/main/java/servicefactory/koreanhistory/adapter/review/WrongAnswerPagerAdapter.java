@@ -1,4 +1,4 @@
-package servicefactory.koreanhistory.adapter;
+package servicefactory.koreanhistory.adapter.review;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

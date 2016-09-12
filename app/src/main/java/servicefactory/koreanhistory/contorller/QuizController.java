@@ -18,7 +18,7 @@ import servicefactory.koreanhistory.persistence.KoreanHistoryFinalVariable;
  */
 public class QuizController {
     private QuizHandler quizHandler;
-    private WrongAnswerController wrongAnswerController;
+    private ReviewController wrongAnswerController;
 
     private ArrayList<Category> categoryArrayList;
     private ArrayList<Word> quizArrayList;
@@ -29,7 +29,7 @@ public class QuizController {
         quizHandler = QuizHandler.getInstance(context);
         quizHandler.open();
 
-        wrongAnswerController = new WrongAnswerController(context);
+        wrongAnswerController = new ReviewController(context);
     }
 
     public ArrayList<Quiz> createQuiz(ArrayList<Category> arrayList) {

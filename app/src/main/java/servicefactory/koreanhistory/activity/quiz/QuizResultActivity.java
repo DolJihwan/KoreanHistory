@@ -1,4 +1,4 @@
-package servicefactory.koreanhistory.activity;
+package servicefactory.koreanhistory.activity.quiz;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import android.widget.ViewFlipper;
 import java.util.ArrayList;
 
 import servicefactory.koreanhistory.R;
+import servicefactory.koreanhistory.activity.review.WrongAnswerListActivity;
+import servicefactory.koreanhistory.activity.review.WrongQuestion;
 import servicefactory.koreanhistory.model.Quiz;
 import servicefactory.koreanhistory.persistence.KoreanHistoryFinalVariable;
 

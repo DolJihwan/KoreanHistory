@@ -13,9 +13,7 @@ import java.util.ArrayList;
 import servicefactory.koreanhistory.R;
 import servicefactory.koreanhistory.adapter.ObjectGridAdapter;
 import servicefactory.koreanhistory.adapter.RecyclerViewMaterialAdapter;
-import servicefactory.koreanhistory.adapter.WrongAnswerGridAdapter;
-import servicefactory.koreanhistory.adapter.WrongAnswerListAdapter;
-import servicefactory.koreanhistory.contorller.WrongAnswerController;
+import servicefactory.koreanhistory.contorller.ReviewController;
 import servicefactory.koreanhistory.model.Objectbean;
 import servicefactory.koreanhistory.model.WrongAnswerItem;
 
@@ -44,7 +42,7 @@ public class CategoryListFragment extends Fragment {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-        WrongAnswerController wrongAnswerController = new WrongAnswerController(getActivity());
+        ReviewController wrongAnswerController = new ReviewController(getActivity());
         ArrayList<WrongAnswerItem> wrongQuizListArr = wrongAnswerController.selectWrongCategoryInfo();
 
 

@@ -1,4 +1,4 @@
-package servicefactory.koreanhistory.activity;
+package servicefactory.koreanhistory.activity.study;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import servicefactory.koreanhistory.R;
-import servicefactory.koreanhistory.adapter.StudyCategoryListAdapter;
+import servicefactory.koreanhistory.adapter.study.StudyCategoryListAdapter;
 import servicefactory.koreanhistory.adapter.RecyclerViewMaterialAdapter;
 import servicefactory.koreanhistory.contorller.StudyController;
 import servicefactory.koreanhistory.model.Category;
@@ -55,8 +55,8 @@ public class StudyMajorCategoryListActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-//        WrongAnswerController wrongAnswerController = new WrongAnswerController(getApplicationContext());
-//        ArrayList<WrongAnswerItem> wrongQuizListArr = wrongAnswerController.selectWrongQuizInfo();
+//        ReviewController reviewController = new ReviewController(getApplicationContext());
+//        ArrayList<WrongAnswerItem> wrongQuizListArr = reviewController.selectWrongQuizInfo();
 
         studycontroller = new StudyController(getApplicationContext());
         ArrayList<Category> categoryList = studycontroller.getMajorCategory();

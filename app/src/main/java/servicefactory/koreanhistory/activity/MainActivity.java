@@ -18,6 +18,10 @@ import java.util.ArrayList;
 
 import eu.chainfire.libsuperuser.Shell;
 import servicefactory.koreanhistory.R;
+import servicefactory.koreanhistory.activity.quiz.QuizListActivity;
+import servicefactory.koreanhistory.activity.review.ReviewListActivity;
+import servicefactory.koreanhistory.activity.review.WrongAnswerListActivity;
+import servicefactory.koreanhistory.activity.study.StudyMajorCategoryListActivity;
 import servicefactory.koreanhistory.model.Quiz;
 import servicefactory.koreanhistory.persistence.KoreanHistoryFinalVariable;
 
@@ -26,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RippleView rv_study, rv_quiz, rv_review, rv_preview;
     private ImageView iv_study, iv_quiz, iv_review, iv_preview;
     private Intent intent;
-    android.os.Handler handler;
+    private android.os.Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +38,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         handler = new Handler();
-        MainActivityInit();
+
+        // activity initialize common setting.
+        init();
     }
 
-    private void MainActivityInit() {
+    private void init() {
+        // ripple button & imageView init (study, quiz, review, preview)
         rv_study = (RippleView) findViewById(R.id.rv_study);
         iv_study = (ImageView) findViewById(R.id.iv_study);
         rv_study.setOnClickListener(this);
@@ -64,19 +71,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.rv_study:
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    Log.i("Main", "Touch:: DOWN");
-                    // 누르고 있을때 이미지 변경
                     iv_study.setImageResource(R.drawable.main_study_on);
                 } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 } else if (motionEvent.getAction() == MotionEvent.ACTION_MOVE) {
-                    Log.i("Main", "Touch:: MOVE");
                     if (!view.isPressed()) {
                         view.setPressed(false);
-                        Log.i("Main", "Touch:: 밖");
                         iv_study.setImageResource(R.drawable.main_study_off);
-                    } else {
-                        Log.i("Main", "Touch:: 안");
-                        view.setFocusable(true);
                     }
                 }
                 break;
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void run() {
                     ArrayList<Quiz> quizArrayList = (ArrayList<Quiz>) getIntent().getSerializableExtra("quizArray");
-                    intent = new Intent(MainActivity.this, WrongAnswerListActivit.class);
+                    intent = new Intent(MainActivity.this, ReviewListActivity.class);
                     intent.putExtra("quizArray", quizArrayList);
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(), "업데이트 예정입니다.", Toast.LENGTH_SHORT).show();

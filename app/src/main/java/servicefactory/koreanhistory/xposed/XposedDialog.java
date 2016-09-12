@@ -17,9 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import servicefactory.koreanhistory.R;
-import servicefactory.koreanhistory.activity.QuizActivity;
-import servicefactory.koreanhistory.contorller.QuizController;
-import servicefactory.koreanhistory.contorller.WrongAnswerController;
+import servicefactory.koreanhistory.activity.quiz.QuizActivity;
+import servicefactory.koreanhistory.contorller.ReviewController;
 import servicefactory.koreanhistory.popup.TextDrawable;
 
 /**
@@ -27,7 +26,7 @@ import servicefactory.koreanhistory.popup.TextDrawable;
  */
 public class XposedDialog extends DialogFragment {
 
-    private WrongAnswerController wrongAnswerController;
+    private ReviewController wrongAnswerController;
 
     public XposedDialog() {
 
@@ -49,7 +48,7 @@ public class XposedDialog extends DialogFragment {
         bt_deleteQuiz = (LinearLayout) view.findViewById(R.id.soft_reboot);
         bt_cancel = (LinearLayout) view.findViewById(R.id.ll_cancel);
 
-        wrongAnswerController = new WrongAnswerController(getActivity());
+        wrongAnswerController = new ReviewController(getActivity());
 
         bt_entireQuiz.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,12 +1,10 @@
 package servicefactory.koreanhistory.fragment;
 
-import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +13,8 @@ import java.util.ArrayList;
 
 import servicefactory.koreanhistory.R;
 import servicefactory.koreanhistory.adapter.RecyclerViewMaterialAdapter;
-import servicefactory.koreanhistory.adapter.WrongAnswerListAdapter;
-import servicefactory.koreanhistory.contorller.WrongAnswerController;
+import servicefactory.koreanhistory.adapter.review.WrongAnswerListAdapter;
+import servicefactory.koreanhistory.contorller.ReviewController;
 import servicefactory.koreanhistory.model.WrongAnswerItem;
 import servicefactory.koreanhistory.popup.CircularRevealView;
 
@@ -50,7 +48,7 @@ public class DateListFragment extends Fragment {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-        WrongAnswerController wrongAnswerController = new WrongAnswerController(getActivity());
+        ReviewController wrongAnswerController = new ReviewController(getActivity());
         ArrayList<WrongAnswerItem> wrongQuizListArr = wrongAnswerController.selectWrongQuizInfo();
 
         for (int i = 0; i < wrongQuizListArr.size(); i++) {

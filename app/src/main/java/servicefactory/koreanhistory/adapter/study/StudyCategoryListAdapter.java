@@ -1,4 +1,4 @@
-package servicefactory.koreanhistory.adapter;
+package servicefactory.koreanhistory.adapter.study;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import servicefactory.koreanhistory.R;
-import servicefactory.koreanhistory.activity.StudyMinorCategoryListActivity;
+import servicefactory.koreanhistory.activity.study.StudyMinorCategoryListActivity;
 import servicefactory.koreanhistory.model.Category;
 
 /**

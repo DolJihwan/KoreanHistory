@@ -1,4 +1,4 @@
-package servicefactory.koreanhistory.adapter;
+package servicefactory.koreanhistory.adapter.review;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

@@ -16,13 +16,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.StudyMajorCategoryListActivity" />
-        <activity android:name=".activity.StudyMinorCategoryListActivity" />
-        <activity android:name=".activity.QuizActivity" />
-        <activity android:name=".activity.QuizListActivity" />
-        <activity android:name=".activity.WrongAnswerListActivit" />
-        <activity android:name=".activity.WrongAnswerListActivity" />
-        <activity android:name=".activity.QuizResultActivity" />
+        <activity android:name=".activity.study.StudyMajorCategoryListActivity" />
+        <activity android:name=".activity.study.StudyMinorCategoryListActivity" />
+        <activity android:name=".activity.quiz.QuizActivity" />
+        <activity android:name=".activity.quiz.QuizListActivity" />
+        <activity android:name=".activity.review.ReviewListActivity" />
+        <activity android:name=".activity.review.WrongAnswerListActivity" />
+        <activity android:name=".activity.quiz.QuizResultActivity" />
     </application>
 
 </manifest>

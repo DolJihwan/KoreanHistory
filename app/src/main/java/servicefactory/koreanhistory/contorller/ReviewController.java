@@ -17,14 +17,14 @@ import servicefactory.koreanhistory.model.WrongAnswerItem;
 /**
  * Created by JihwanHome on 2016-08-20.
  */
-public class WrongAnswerController {
+public class ReviewController {
     private WrongAnswerHandler wrongAnswerHandler;
     private CategoryHandler categoryHandler;
     private DateInfo dateInfoInstance;
 
     private ArrayList<Quiz> quizArr = new ArrayList<>();
 
-    public WrongAnswerController(Context context) {
+    public ReviewController(Context context) {
         // db connect(quizHandler).
         wrongAnswerHandler = WrongAnswerHandler.getInstance(context);
         wrongAnswerHandler.open();
@@ -35,10 +35,10 @@ public class WrongAnswerController {
     }
 
     public void insertQuizInfo(ArrayList<Quiz> quizList, int[] selectAnswer, int[] correctAnswer) {
-        Log.i("WrongAnswerController", "(QuizInfo) " + quizList.toString());
-        Log.i("WrongAnswerController", "(SelAnswer) " + selectAnswer[0] + ", " + selectAnswer[1] + ", " + selectAnswer[2] + ", " + selectAnswer[3] + ", " + selectAnswer[4]);
-        Log.i("WrongAnswerController", "(CorAnswer) " + correctAnswer[0] + ", " + correctAnswer[1] + ", " + correctAnswer[2] + ", " + correctAnswer[3] + ", " + correctAnswer[4]);
-        Log.i("WrongAnswerController", "(DateTime) " + dateInfoInstance.dateTime());
+        Log.i("ReviewController", "(QuizInfo) " + quizList.toString());
+        Log.i("ReviewController", "(SelAnswer) " + selectAnswer[0] + ", " + selectAnswer[1] + ", " + selectAnswer[2] + ", " + selectAnswer[3] + ", " + selectAnswer[4]);
+        Log.i("ReviewController", "(CorAnswer) " + correctAnswer[0] + ", " + correctAnswer[1] + ", " + correctAnswer[2] + ", " + correctAnswer[3] + ", " + correctAnswer[4]);
+        Log.i("ReviewController", "(DateTime) " + dateInfoInstance.dateTime());
 
         String dateTime = dateInfoInstance.dateTime();
 
@@ -50,7 +50,7 @@ public class WrongAnswerController {
                 tmpNum = 0;
             }
             wrongAnswerHandler.insertWrongQuizInfo(dateTime, quizList.get(i).getCategory_major(), quizList.get(i).getCategory_minor(), quizList.get(i).getCategory_theme(), quizList.get(i).getCategory_quiz(), quizList.get(i).getQuizNo1(), quizList.get(i).getQuizNo2(), quizList.get(i).getQuizNo3(), quizList.get(i).getQuizNo4(), tmpNum);
-            Log.i("WrongAnswerController", "(wrong_yn) " + dateTime + ", " + quizList.get(i).getCategory_major() + ", " + quizList.get(i).getCategory_minor() + ", " + quizList.get(i).getCategory_theme() + ", " + quizList.get(i).getCategory_quiz() + ", " + quizList.get(i).getQuizNo1() + ", " + quizList.get(i).getQuizNo2() + ", " + quizList.get(i).getQuizNo3() + ", " + quizList.get(i).getQuizNo4() + ", " + tmpNum);
+            Log.i("ReviewController", "(wrong_yn) " + dateTime + ", " + quizList.get(i).getCategory_major() + ", " + quizList.get(i).getCategory_minor() + ", " + quizList.get(i).getCategory_theme() + ", " + quizList.get(i).getCategory_quiz() + ", " + quizList.get(i).getQuizNo1() + ", " + quizList.get(i).getQuizNo2() + ", " + quizList.get(i).getQuizNo3() + ", " + quizList.get(i).getQuizNo4() + ", " + tmpNum);
         }
         wrongAnswerHandler.close();
     }
@@ -83,7 +83,7 @@ public class WrongAnswerController {
         Cursor categoryList = wrongAnswerHandler.selectCategoryList();
 
         while(categoryList.moveToNext()){
-            Log.i("WrongAnswerController", "major:: " + categoryList.getString(0));
+            Log.i("ReviewController", "major:: " + categoryList.getString(0));
         }
 
 //        Cursor dateList = wrongAnswerHandler.selectDateList();
@@ -125,7 +125,7 @@ public class WrongAnswerController {
 
             Word word = new Word(wordNum, category_major, category_minor, category_theme, category_quiz, wordNo1, wordNo2, wordNo3, wordNo4);
             wordArrayList.add(word);
-            Log.i("WrongAnswerController", "(createReviewTotal) " + cursor.getString(0) + ", " + cursor.getString(1) + ", " + cursor.getString(2) + ", " + cursor.getString(3) + ", " + cursor.getString(4) + ", " + cursor.getString(5) + ", " + cursor.getString(6) + ", " + cursor.getString(7) + ", " + cursor.getString(8) + ", " + cursor.getString(9) + ", " + cursor.getString(10));
+            Log.i("ReviewController", "(createReviewTotal) " + cursor.getString(0) + ", " + cursor.getString(1) + ", " + cursor.getString(2) + ", " + cursor.getString(3) + ", " + cursor.getString(4) + ", " + cursor.getString(5) + ", " + cursor.getString(6) + ", " + cursor.getString(7) + ", " + cursor.getString(8) + ", " + cursor.getString(9) + ", " + cursor.getString(10));
         }
         wrongAnswerHandler.close();
         return wordArrayList;
@@ -149,7 +149,7 @@ public class WrongAnswerController {
 
             Word word = new Word(wordNum, category_major, category_minor, category_theme, category_quiz, wordNo1, wordNo2, wordNo3, wordNo4);
             wordArrayList.add(word);
-            Log.i("WrongAnswerController", "(createReviewTotal) " + cursor.getString(0) + ", " + cursor.getString(1) + ", " + cursor.getString(2) + ", " + cursor.getString(3) + ", " + cursor.getString(4) + ", " + cursor.getString(5) + ", " + cursor.getString(6) + ", " + cursor.getString(7) + ", " + cursor.getString(8) + ", " + cursor.getString(9) + ", " + cursor.getString(10));
+            Log.i("ReviewController", "(createReviewTotal) " + cursor.getString(0) + ", " + cursor.getString(1) + ", " + cursor.getString(2) + ", " + cursor.getString(3) + ", " + cursor.getString(4) + ", " + cursor.getString(5) + ", " + cursor.getString(6) + ", " + cursor.getString(7) + ", " + cursor.getString(8) + ", " + cursor.getString(9) + ", " + cursor.getString(10));
         }
         wrongAnswerHandler.close();
         return wordArrayList;
